@@ -109,7 +109,7 @@ app.get('/movie/:id', async (req, res) => {
         if (!response) {
             res.send({ message: 'No User found', error_type: 1 });
         } else {
-            const response = await movieModel.find({ _id: req.params.user_id });
+            const response = await movieModel.find({ _id: req.params.id });
             res.send({ message: 'movie fetched successfully', data: response });
         }
     } catch (error) {
