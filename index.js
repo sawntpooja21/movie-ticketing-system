@@ -88,7 +88,7 @@ app.post('/booking/:movieId', async (req, res) => {
             delete req.token;
 
             const movieData = await movieModel.findOne({ _id: req.body.movieId });
-            if (movieData && movieData.availableseats > req.body.seats && time < new Date()) {
+            if (movieData && movieData.availableseats > req.body.seats && movieData.time < new Date()) {
                 const user = new bookingModel(req.body)
                 const response = await user.save();
                 const updateData = await movieModel.findOneAndUpdate({ _id: req.body.movieId }, { $inc: { 'availableseats': -(req.body.seats) } });
